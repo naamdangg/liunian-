@@ -1,0 +1,644 @@
+/* ==========================================================================
+   Sợi chỉ 6 năm — cinematic visual system
+   Every colour reads a token. config.js writes THEME into these same names,
+   so changing THEME.neonPink retints thread, glow, particles and neon text.
+   ========================================================================== */
+
+:root {
+  /* palette (overwritten at boot from THEME) */
+  --bg: #050505;
+  --red-black: #16090D;
+  --muted-red: #632533;
+  --crimson: #A83F5A;
+  --neon: #E05A78;
+  --highlight: #FFD6DF;
+  --neon-glow: 0 0 5px var(--neon), 0 0 15px var(--neon), 0 0 35px rgba(224, 90, 120, .45);
+  --tata-red: #A51D2D; /* local to the Tata scene; thread.js sets it from TATA_RED */
+
+  /* derived — never hard-code another pink */
+  --neon-ink: color-mix(in srgb, var(--neon) 52%, var(--highlight));
+  --neon-soft: color-mix(in srgb, var(--neon) 35%, transparent);
+  --neon-faint: color-mix(in srgb, var(--neon) 14%, transparent);
+  --line-white: rgba(255, 246, 248, .94);
+  --white-glow: 0 0 4px rgba(255, 255, 255, .85), 0 0 14px rgba(255, 236, 240, .45), 0 0 30px var(--neon-faint);
+  --paper: #EDE3D8;
+  --paper-shade: #D9CBBD;
+  --shadow-deep: 0 30px 60px rgba(0, 0, 0, .65), 0 8px 18px rgba(0, 0, 0, .5);
+
+  /* type */
+  --font: Inter, "SF Pro Display", "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+  --text-max: min(88vw, 34ch);
+  --essay-max: min(90vw, 68ch);
+  --text-size: clamp(1.45rem, 0.95rem + 2.4vw, 3.3rem);
+  --hero-size: clamp(2.1rem, 1.2rem + 4.6vw, 5.8rem);
+  --caption-size: clamp(0.98rem, 0.85rem + 0.6vw, 1.35rem);
+  --safe-pad: max(1.25rem, env(safe-area-inset-left), env(safe-area-inset-right));
+
+  /* world (1 unit of the SVG viewBox = 1px of #world) */
+  --world-w: 6000px;
+  --world-h: 4200px;
+  --thread-color: var(--neon);
+  --thread-scale: 1;
+  --thread-core: 3px;
+
+  /* photos (world px; the camera scales them, images never stretch) */
+  --photo-max-w: 460px;
+  --photo-max-h: 600px;
+
+  /* motion */
+  --ease-cine: cubic-bezier(.22, .61, .21, 1);
+  --motion-scale: 1;
+  --scroll-length: 7600;
+}
+
+/* ---------- base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--highlight);
+  font-family: var(--font);
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+
+img { max-width: none; }
+
+/* invisible scroll distance; the world itself stays pinned */
+#scroll-driver {
+  width: 1px;
+  height: calc(var(--scroll-length) * 1vh);
+  pointer-events: none;
+}
+
+#cinematic-world {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--bg);
+  isolation: isolate;
+  contain: strict;
+}
+
+/* faint crimson depth behind everything — not a decorative gradient, it is the dark of the world */
+#cinematic-world::before {
+  content: "";
+  position: absolute;
+  inset: -10%;
+  background: radial-gradient(120% 90% at 50% 55%, var(--red-black) 0%, transparent 62%);
+  opacity: .55;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* vignette that keeps the eye in the centre of the frame */
+#cinematic-world::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(130% 100% at 50% 50%, transparent 55%, rgba(0, 0, 0, .78) 100%);
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* the camera owns one transform per frame; the world lives in world px */
+#camera, #world {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+#camera { z-index: 1; }
+#world { width: var(--world-w); height: var(--world-h); }
+
+#memory-layer, #collage-layer, #text-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+/* one stack for the whole world: the road (thread) runs beneath the prints that lie beside it,
+   words float above both. collage99.js lifts #collage-layer to 5 while the table is out. */
+#collage-layer { z-index: 2; }
+#memory-layer { z-index: 4; }
+#text-layer { z-index: 5; }
+
+/* ---------- the thread ---------- */
+#thread-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.thread-strand { transition: none; }
+
+.thread-strand path {
+  fill: none;
+  stroke: var(--thread-color);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.thread-halo {
+  stroke-width: calc(var(--thread-core) * 9 * var(--thread-scale));
+  opacity: .1;
+}
+.thread-glow {
+  stroke-width: calc(var(--thread-core) * 3.6 * var(--thread-scale));
+  opacity: .32;
+}
+#thread-path, .thread-core {
+  stroke-width: calc(var(--thread-core) * var(--thread-scale));
+  opacity: 1;
+}
+/* the hot centre of the core, so the line reads as light rather than paint */
+.thread-head {
+  fill: var(--highlight);
+  stroke: var(--thread-color);
+  stroke-width: calc(6px * var(--thread-scale));
+  stroke-opacity: .45;
+  r: calc(5px * var(--thread-scale));
+}
+
+.thread-node {
+  fill: var(--bg);
+  stroke: var(--thread-color);
+  stroke-width: calc(2px * var(--thread-scale));
+  r: calc(6px * var(--thread-scale));
+  opacity: .75;
+  transition: opacity .6s var(--ease-cine);
+}
+.thread-node.is-active {
+  fill: var(--thread-color);
+  opacity: 1;
+}
+
+/* line art drawn by light: give paths pathLength="1" and set --draw (0–1) */
+.draw-path {
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: calc(1 - var(--draw, 0));
+}
+
+#ltv-art, .line-art--white {
+  fill: none;
+  stroke: var(--line-white);
+  stroke-width: calc(2px * var(--thread-scale));
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, .7)) drop-shadow(0 0 10px var(--neon-soft));
+}
+
+#phone-art, #lily-art, .line-art--neon {
+  fill: none;
+  stroke: var(--thread-color);
+  stroke-width: calc(var(--thread-core) * var(--thread-scale));
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 4px var(--neon)) drop-shadow(0 0 12px var(--neon-soft));
+}
+#lily-art .lily-vein { stroke: var(--highlight); stroke-width: calc(1.2px * var(--thread-scale)); opacity: .7; }
+#phone-art text, .line-art-text {
+  fill: var(--neon-ink);
+  stroke: none;
+  font-family: var(--font);
+}
+
+/* ---------- screen-space overlays ---------- */
+#particle-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 8;
+}
+
+/* blurred, enlarged duplicate behind a focused photo — fills the frame without stretching it */
+#immersion-bg {
+  position: absolute;
+  inset: -8%;
+  background-color: var(--bg);
+  background-size: cover;
+  background-position: center;
+  filter: blur(42px) brightness(.42) saturate(1.05);
+  transform: scale(1.12);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+#immersion-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(closest-side, transparent 40%, rgba(5, 5, 5, .85) 100%);
+}
+
+/* Tata only: a local red wash, opacity driven by scroll, 0 everywhere else */
+#tata-tint {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(90% 80% at 50% 45%, color-mix(in srgb, var(--tata-red) 92%, var(--highlight)) 0%, var(--tata-red) 45%, color-mix(in srgb, var(--tata-red) 40%, var(--bg)) 100%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 7;
+}
+#tata-tint.is-under { z-index: 0; }
+
+/* ---------- typography ---------- */
+.neon-text,
+.caption,
+.speech-bubble,
+.essay {
+  overflow-wrap: anywhere;
+  word-break: normal;
+  hyphens: none;
+  white-space: normal;
+}
+
+.neon-text {
+  position: absolute;
+  max-width: var(--text-max);
+  margin: 0;
+  padding: .2em var(--safe-pad);
+  translate: -50% -50%;
+  font-size: var(--text-size);
+  font-weight: 500;
+  line-height: 1.32;
+  letter-spacing: .01em;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--neon-ink);
+  text-shadow: var(--neon-glow);
+  will-change: opacity, transform;
+}
+
+/* the three "Tớ yêu Bông" lines and other strongest moments */
+.neon-text--hero {
+  --text-max: min(92vw, 18ch);
+  font-size: var(--hero-size);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: 0;
+  color: var(--highlight);
+  text-shadow: var(--neon-glow), 0 0 70px var(--neon-soft);
+}
+
+/* the date / 2 4 1 0 keep their digits on one line but still shrink to fit */
+.neon-text--date {
+  font-size: clamp(2.4rem, 1rem + 8vw, 8rem);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .06em;
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+
+.neon-text--white {
+  color: var(--line-white);
+  text-shadow: var(--white-glow);
+}
+
+/* caption that belongs to a memory, sitting by the road */
+.caption {
+  position: absolute;
+  max-width: min(84vw, 28ch);
+  margin: 0;
+  padding: .85em 1.1em .9em;
+  font-size: var(--caption-size);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--highlight);
+  text-wrap: pretty;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--red-black) 88%, transparent), rgba(5, 5, 5, .82));
+  border: 1px solid color-mix(in srgb, var(--crimson) 45%, transparent);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 214, 223, .06);
+  text-shadow: 0 0 12px var(--neon-faint);
+}
+.caption::before {
+  content: "";
+  position: absolute;
+  left: 1.1em;
+  top: -1px;
+  width: 2.6em;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--thread-color);
+  box-shadow: 0 0 8px var(--neon);
+}
+
+.speech-bubble {
+  position: absolute;
+  max-width: min(80vw, 22ch);
+  margin: 0;
+  padding: .8em 1.15em;
+  translate: -50% -100%;
+  font-size: clamp(1.05rem, .9rem + .9vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.38;
+  text-align: center;
+  color: var(--red-black);
+  background: var(--highlight);
+  border-radius: 1.4em;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .45), 0 0 26px rgba(255, 214, 223, .25);
+  transform-origin: 50% 120%;
+}
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -14px;
+  width: 26px;
+  height: 18px;
+  translate: -50% 0;
+  background: inherit;
+  clip-path: polygon(0 0, 100% 0, 38% 100%);
+}
+
+.location-pin {
+  position: absolute;
+  translate: -50% -100%;
+  font-size: clamp(2.6rem, 2rem + 3vw, 4.6rem);
+  line-height: 1;
+  filter: drop-shadow(0 0 6px var(--neon)) drop-shadow(0 0 18px var(--neon-soft));
+}
+
+/* ---------- photographs (aspect ratio always preserved) ---------- */
+.memory-node {
+  position: absolute;
+  translate: -50% -50%;
+  transform-origin: 50% 50%;
+  filter: drop-shadow(0 26px 34px rgba(0, 0, 0, .6)) drop-shadow(0 6px 10px rgba(0, 0, 0, .45));
+  will-change: transform, opacity;
+}
+
+.photo-frame {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+  padding: 10px;
+  background: linear-gradient(170deg, var(--paper) 0%, var(--paper-shade) 100%);
+  border-radius: 3px;
+}
+
+.photo-sharp {
+  position: relative;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: var(--photo-max-w);
+  max-height: var(--photo-max-h);
+  object-fit: contain;
+  image-orientation: from-image;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* blurred extension around a sharp photo; set background-image or place an <img> inside */
+.photo-blur-ext {
+  position: absolute;
+  inset: -18%;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  filter: blur(30px) brightness(.45);
+  opacity: .85;
+  pointer-events: none;
+}
+.photo-blur-ext > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* worn, torn-edged physical print */
+.photo-frame--torn {
+  padding: 14px 14px 18px;
+  border-radius: 0;
+  background:
+    radial-gradient(140% 90% at 20% 10%, rgba(255, 255, 255, .35), transparent 60%),
+    linear-gradient(175deg, var(--paper) 0%, var(--paper-shade) 100%);
+  clip-path: polygon(
+    0% 1.5%, 6% 0%, 13% 1.2%, 21% .2%, 30% 1.4%, 38% .3%, 47% 1.1%, 55% 0%, 63% 1.3%, 72% .4%, 80% 1.5%, 88% .2%, 95% 1.2%, 100% .4%,
+    99.2% 8%, 100% 16%, 98.9% 25%, 99.8% 34%, 99% 43%, 100% 52%, 98.8% 61%, 99.7% 70%, 99% 79%, 100% 88%, 99.1% 96%, 100% 99.4%,
+    93% 100%, 85% 98.8%, 76% 99.8%, 67% 98.9%, 58% 100%, 49% 98.7%, 40% 99.7%, 31% 98.8%, 22% 100%, 13% 98.9%, 5% 99.8%, 0% 98.6%,
+    .9% 90%, 0% 81%, 1% 72%, .2% 63%, 1.2% 54%, 0% 45%, .9% 36%, .1% 27%, 1.1% 18%, .2% 9%);
+}
+.photo-frame--torn::after {
+  /* creases and wear live on the paper border only, never over the photograph */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 14px solid transparent;
+  border-image: linear-gradient(120deg, rgba(120, 90, 70, .18), transparent 30%, rgba(120, 90, 70, .12) 70%, transparent) 14;
+}
+
+/* opening: ẢNH 1 behind translucent glass */
+.glass-memory {
+  position: absolute;
+  translate: -50% -50%;
+  border-radius: 32px;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, .7), 0 0 0 1px rgba(255, 255, 255, .08), inset 0 1px 0 rgba(255, 255, 255, .22);
+  will-change: transform, filter, opacity;
+}
+.glass-memory .photo-sharp { max-width: none; max-height: none; width: 100%; height: auto; }
+.glass-memory::before {
+  /* soft reflection sweeping across the glass */
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, .2) 0%, rgba(255, 255, 255, .05) 28%, transparent 42%, transparent 70%, rgba(255, 255, 255, .07) 100%);
+  pointer-events: none;
+}
+.glass-memory::after {
+  /* glass edge and inner depth */
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16), inset 0 0 60px rgba(5, 5, 5, .35);
+  pointer-events: none;
+}
+.glass-memory__pane {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  backdrop-filter: blur(var(--glass-blur, 0px)) brightness(var(--glass-bright, 1));
+  -webkit-backdrop-filter: blur(var(--glass-blur, 0px)) brightness(var(--glass-bright, 1));
+  pointer-events: none;
+}
+
+/* ---------- 99 memories: original colours, original proportions ---------- */
+.collage-photo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 6px;
+  background: var(--paper);
+  border-radius: 2px;
+  transform-origin: 50% 50%;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, .55), 0 2px 6px rgba(0, 0, 0, .5);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+.collage-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  image-orientation: from-image;
+  /* no colour filters, ever */
+  filter: none;
+}
+.collage-photo--core {
+  padding: 9px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, .65), 0 0 0 1px var(--neon-faint), 0 0 34px var(--neon-faint);
+}
+
+/* ---------- the essay: the one large block of text ---------- */
+.essay {
+  position: absolute;
+  width: var(--essay-max);
+  max-width: var(--essay-max);
+  margin: 0;
+  padding: clamp(1.5rem, 4vw, 3.5rem) var(--safe-pad);
+  font-size: clamp(1.02rem, .92rem + .45vw, 1.28rem);
+  font-weight: 400;
+  line-height: 1.85;
+  color: var(--highlight);
+  text-shadow: 0 0 10px var(--neon-faint), 0 0 2px var(--neon-soft);
+  text-wrap: pretty;
+  z-index: 5;
+}
+/* a pool of darkness under the letter so the thread passing behind never crosses a word */
+.essay::before {
+  content: "";
+  position: absolute;
+  inset: -6% -10%;
+  z-index: -1;
+  background: radial-gradient(closest-side, rgba(5, 5, 5, .92) 62%, rgba(5, 5, 5, 0) 100%);
+  pointer-events: none;
+}
+.essay p { margin: 0 0 1.05em; }
+.essay .neon-text--hero,
+.essay strong {
+  position: static;
+  translate: none;
+  display: block;
+  padding: 0;
+  margin: .6em 0;
+  font-size: clamp(1.6rem, 1.1rem + 2vw, 2.8rem);
+  font-weight: 600;
+  text-align: left;
+  color: var(--highlight);
+  text-shadow: var(--neon-glow);
+}
+.essay__signoff {
+  margin-top: 2.4em;
+  white-space: pre-line;
+  text-align: right;
+  color: var(--neon-ink);
+  text-shadow: var(--neon-glow);
+}
+
+/* ---------- utility / state ---------- */
+.is-hidden {
+  opacity: 0 !important;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#debug-panel {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 20;
+  max-width: min(92vw, 360px);
+  padding: 10px 12px;
+  font: 12px/1.5 ui-monospace, Consolas, monospace;
+  color: var(--highlight);
+  background: rgba(5, 5, 5, .82);
+  border: 1px solid var(--muted-red);
+  border-radius: 8px;
+  white-space: pre-wrap;
+  pointer-events: none;
+}
+#debug-panel[hidden] { display: none; }
+
+/* ---------- smaller screens: same story, safer sizes ---------- */
+@media (max-width: 760px) {
+  :root {
+    --text-max: min(90vw, 26ch);
+    --text-size: clamp(1.3rem, .9rem + 3.6vw, 2.2rem);
+    --hero-size: clamp(1.9rem, 1rem + 6vw, 3.2rem);
+    --photo-max-w: 360px;
+    --photo-max-h: 520px;
+  }
+  /* config.js writes --text-max inline on :root, so narrow widths are set on the element itself */
+  .neon-text:not(.neon-text--hero):not(.neon-text--date) { --text-max: min(90vw, 26ch); }
+  .neon-text--hero { --text-max: min(92vw, 16ch); }
+  .neon-text--date { letter-spacing: .03em; }
+  .caption { max-width: min(86vw, 24ch); }
+  .speech-bubble { max-width: min(84vw, 18ch); }
+  .glass-memory { border-radius: 20px; }
+  .essay { --essay-max: min(94vw, 68ch); line-height: 1.75; }
+}
+
+@media (max-width: 380px) {
+  .neon-text--date { font-size: clamp(2rem, .6rem + 9vw, 3rem); letter-spacing: .02em; }
+  .essay { font-size: 1rem; }
+}
+
+@media (max-height: 520px) and (orientation: landscape) {
+  :root {
+    --text-size: clamp(1.2rem, .8rem + 2.4vh, 2rem);
+    --hero-size: clamp(1.6rem, 1rem + 5vh, 2.8rem);
+    --caption-size: clamp(.9rem, .75rem + 1.2vh, 1.1rem);
+  }
+  .neon-text:not(.neon-text--hero):not(.neon-text--date) { --text-max: min(80vw, 40ch); }
+  .neon-text--date { font-size: clamp(2rem, 1rem + 9vh, 4.4rem); }
+}
+
+/* browsers without color-mix(): same palette as plain rgba so nothing loses its colour */
+@supports not (color: color-mix(in srgb, red 50%, blue)) {
+  :root {
+    --neon-ink: #F098AB;
+    --neon-soft: rgba(224, 90, 120, .35);
+    --neon-faint: rgba(224, 90, 120, .14);
+  }
+  .caption {
+    background: linear-gradient(160deg, rgba(22, 9, 13, .88), rgba(5, 5, 5, .82));
+    border-color: rgba(168, 63, 90, .45);
+  }
+  #tata-tint { background: radial-gradient(90% 80% at 50% 45%, var(--tata-red) 0%, var(--tata-red) 45%, rgba(5, 5, 5, .9) 100%); }
+}
+
+/* ---------- reduced motion: shorter camera travel, no heavy blur, full story kept ---------- */
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion-scale: .42; }
+  *, *::before, *::after {
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+  }
+  html { scroll-behavior: auto; }
+  #immersion-bg { filter: blur(18px) brightness(.4); transform: none; }
+  .photo-blur-ext { filter: blur(14px) brightness(.45); }
+  #ltv-art, #phone-art, #lily-art, .line-art--white, .line-art--neon { filter: none; }
+  .thread-halo { opacity: .14; }
+}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="Một hành trình qua sáu năm, được kể bằng ánh sáng, ký ức và một sợi chỉ không đứt.">
+  <title>Sáu năm — một hành trình</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preload" as="image" href="uploads/nf1.jpg">
+  <script defer src="js/config.js"></script>
+  <script defer src="js/story.js"></script>
+  <script defer src="js/assets.js"></script>
+  <script defer src="js/thread.js"></script>
+  <script defer src="js/camera.js"></script>
+  <script defer src="js/timeline.js"></script>
+  <script defer src="js/memories.js"></script>
+  <script defer src="js/collage99.js"></script>
+  <script defer src="js/particles.js"></script>
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+  <div id="scroll-driver" aria-hidden="true"></div>
+  <main id="cinematic-world" aria-label="Hành trình sáu năm">
+    <div id="camera">
+      <div id="world">
+        <svg id="thread-layer" aria-hidden="true" focusable="false" viewBox="0 0 6000 4200" preserveAspectRatio="none">
+          <path id="thread-path" d="M160 1920 C420 1920 400 1680 680 1680 S980 2080 1220 1880 C1460 1680 1340 1390 1630 1360 S1970 1640 2180 1440 C2390 1240 2230 1020 2520 1000 S2830 1280 3010 1080 C3210 870 2940 640 3240 600 S3560 860 3730 680 C3910 490 3680 300 3980 260 S4340 500 4480 320 C4640 120 4440 80 4770 110 S5100 390 5260 190 C5410 0 5620 80 5850 220" />
+          <g id="ltv-art"></g><g id="phone-art"></g><g id="lily-art"></g>
+        </svg>
+        <div id="memory-layer" aria-live="off"></div>
+        <div id="collage-layer" aria-hidden="true"></div>
+        <div id="text-layer" aria-live="polite"></div>
+        <article id="essay" class="essay is-hidden" aria-label="Lá thư kỷ niệm"></article>
+      </div>
+    </div>
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+    <div id="immersion-bg" aria-hidden="true"></div>
+    <div id="tata-tint" aria-hidden="true"></div>
+    <aside id="debug-panel" aria-label="Trạng thái phát triển" hidden></aside>
+  </main>
+  <audio id="bgm" src="music.mp3" preload="auto" autoplay loop></audio>
+  <noscript><p class="neon-text" style="left:50%;top:50%;position:fixed">Hành trình này cần bật JavaScript để chạy.</p></noscript>
+</body>
+</html>
