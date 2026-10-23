@@ -1,16 +1,16 @@
 /* The normalized master timeline is the single source of scene order and anchors. */
 const CAMERA_ANCHORS = Object.freeze({
-  opening: [0.02, 0.46], blackPull: [0.08, 0.49], openingMessage: [0.13, 0.48],
-  ltv: [0.19, 0.38], ltvMessage: [0.23, 0.52], photo2: [0.28, 0.59], photo3: [0.30, 0.55],
-  sCurve: [0.35, 0.42], tata: [0.40, 0.36], twist: [0.45, 0.53], drop: [0.49, 0.70],
-  chat: [0.53, 0.62], chatMessage: [0.56, 0.47], date2410: [0.59, 0.34], meaning2410: [0.62, 0.51],
-  togetherMessage: [0.65, 0.61], highway: [0.68, 0.40], photo4: [0.70, 0.37], photo5: [0.715, 0.55],
-  photo6: [0.73, 0.66], photo7: [0.745, 0.46], photo8: [0.76, 0.34], photo9: [0.775, 0.57],
-  firstsMessage: [0.79, 0.43], photo10: [0.805, 0.35], photo11: [0.817, 0.55], photo12: [0.83, 0.65],
-  hardTimes: [0.842, 0.48], photo13: [0.853, 0.34], photo14: [0.864, 0.53], photo15: [0.875, 0.64],
-  photo16: [0.886, 0.43], photo17: [0.897, 0.32], happyMessage: [0.908, 0.52], collage99: [0.922, 0.48],
-  emotionalText: [0.944, 0.37], essay: [0.962, 0.52], overview: [0.976, 0.47], lily: [0.983, 0.42],
-  lilyField: [0.988, 0.57], fireworks: [0.993, 0.47], quiet: [0.997, 0.39], qr: [1, 0.53]
+  opening: [0.02, 0.57], blackPull: [0.08, 0.43], openingMessage: [0.13, 0.46],
+  ltv: [0.19, 0.57], ltvMessage: [0.23, 0.56], photo2: [0.28, 0.43], photo3: [0.30, 0.50],
+  sCurve: [0.35, 0.57], tata: [0.40, 0.43], twist: [0.45, 0.43], drop: [0.49, 0.57],
+  chat: [0.53, 0.43], chatMessage: [0.56, 0.43], date2410: [0.59, 0.57], meaning2410: [0.62, 0.43],
+  togetherMessage: [0.65, 0.43], highway: [0.68, 0.57], photo4: [0.70, 0.43], photo5: [0.715, 0.46],
+  photo6: [0.73, 0.43], photo7: [0.745, 0.56], photo8: [0.76, 0.57], photo9: [0.775, 0.43],
+  firstsMessage: [0.79, 0.57], photo10: [0.805, 0.43], photo11: [0.817, 0.46], photo12: [0.83, 0.43],
+  hardTimes: [0.842, 0.44], photo13: [0.853, 0.57], photo14: [0.864, 0.45], photo15: [0.875, 0.43],
+  photo16: [0.886, 0.57], photo17: [0.897, 0.45], happyMessage: [0.908, 0.43], collage99: [0.922, 0.43],
+  emotionalText: [0.944, 0.57], essay: [0.962, 0.43], overview: [0.976, 0.55], lily: [0.983, 0.57],
+  lilyField: [0.988, 0.44], fireworks: [0.993, 0.47], quiet: [0.997, 0.51], qr: [1, 0.43]
 });
 
 const STORY = Object.freeze([
@@ -26,10 +26,17 @@ const STORY = Object.freeze([
   ['hardTimes','Through difficulty',.55,.565], ['photo13','Photograph 13',.565,.575], ['photo14','Photograph 14',.575,.585],
   ['photo15','Photograph 15',.585,.595], ['photo16','Photograph 16',.595,.605], ['photo17','Photograph 17',.605,.615],
   ['happyMessage','Happiness',.615,.63], ['collage99','Ninety-nine memories',.63,.68],
-  ['emotionalText','Words from the heart',.68,.76], ['essay','The letter',.76,.84], ['overview','The whole journey',.84,.90],
-  ['lily','A double lily',.90,.925], ['lilyField','A field of flowers',.925,.95], ['fireworks','Celebration',.95,.975],
+  ['emotionalText','Words from the heart',.68,.80], ['essay','The letter',.80,.85], ['overview','The whole journey',.85,.90],
+  ['lily','A double lily',.90,.935], ['lilyField','A field of flowers',.935,.95], ['fireworks','Celebration',.95,.975],
   ['quiet','Quiet',.975,.986], ['qr','The destination',.986,1]
 ].map(([id,title,start,end]) => Object.freeze({id,title,start,end,anchor:CAMERA_ANCHORS[id]})));
+
+/* Lily scene phases, as normalized progress within STORY.lily. Kept here so the
+   scroll renderer can share the same black pause, fall, hold, and bloom beats. */
+const LILY_TIMING = Object.freeze({
+  overviewFadeEnd: .12, blackStart: .12, threadFadeStart: .22, threadFadeEnd: .30,
+  fallStart: .30, fallEnd: .52, holdEnd: .58, heroGrowEnd: .78, bloomEnd: 1
+});
 
 /* Exact narrative strings from STORY_CONTENT.md. */
 const STORY_COPY = Object.freeze({
@@ -37,7 +44,7 @@ const STORY_COPY = Object.freeze({
   openingMessage: 'Nơi mọi chuyện bắt đầu',
   ltv: '📍 Trường THCS&THPT Lương Thế Vinh - Cơ Sở Cầu Giấy',
   ltvMessage: 'Vào một ngày mà những tia nắng đã đưa nụ cười của cậu vào trái tim tớ',
-  sCurve: 'Sau một năm, có lẽ santa đã dùng phép màu giáng sinh đã đưa 2 trái tim lại gần hơn',
+  sCurve: 'Sau một năm, có lẽ santa cùng phép màu giáng sinh đã đưa 2 trái tim lại gần hơn',
   tataFirst: 'Bảo nhận quà nhưng không nhận tình à?',
   tataSecond: 'Chắc không đóoooooo',
   twist: ['Có vẻ là không nhỉ','Bởi vì','Ngày này 6 năm trước','24-10-2020'],

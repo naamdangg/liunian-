@@ -9,7 +9,7 @@ const Memories = (() => {
   /* ---- exact story copy not already in STORY_COPY (verbatim from STORY_CONTENT.md) ---- */
   const COPY = Object.freeze({
     ltvName: 'Trường THCS&THPT Lương Thế Vinh - Cơ Sở Cầu Giấy',
-    together: 'Chúng ta đã cùng nhau trải qua rất nhiều chuyện cùng nhau nhỉ',
+    together: 'Chúng ta đã cùng nhau trải qua rất nhiều chuyện nhỉ',
     meaning: ['trái tim', 'chữ trọn đời trọn kiếp', 'tình yêu', 'bao giờ phai'],
     photo45: 'Lần đầu cùng đi chơi với lớp dưới danh nghĩa “một cặp”',
     photo6: 'Lần đầu chụp ptb',
@@ -27,8 +27,8 @@ const Memories = (() => {
     photo15: ['Bonus ảnh áo phao dzai Hàn Quốc nè:))', 'Tại cậu bảo đợt đó mặc áo này nhìn đẹp zai nên mới xuôi xuôi'],
     photo16: ['Cùng nhau đội mưa nữa', 'cũng tính là một kiểu vượt khó ha'],
     photo17: [
-      'Kể cả là đến hiện tại', 'Chúng ta vẫn luôn tìm ra cách để vượt qua những khó khăn ha',
-      'Dù có cách cả ngàn cây số', 'Chúng ta vẫn luôn tìm được cách để cả 2 trái tim trở nên đồng điệu'
+      'Kể cả là đến hiện tại', 'Bọn mình vẫn luôn tìm ra cách để vượt qua những khó khăn ha',
+      'Dù có cách cả ngàn cây số', 'Tớ với Bông vẫn luôn tìm được cách để cả 2 trái tim trở nên đồng điệu'
     ],
     happy: ['Nhưng tất nhiên chủ yếu là', 'Tớ và cậu đều đã có những khoảng thời gian hạnh phúc nhất với nhau'],
     heroLines: ['Tớ yêu Bông', 'Tớ yêu Bông rất nhiều', 'Yêu Bông nhiều nhất thế giới', 'Tớ yêu cậu'],
@@ -39,7 +39,7 @@ const Memories = (() => {
       { p: 'Tớ vẫn luôn và sẽ luôn biết ơn cậu rất nhiều vì đã xuất hiện trong cuộc đời của tớ, cùng tớ trưởng thành. Cậu đã luôn và sẽ luôn là lý do để tớ tiếp tục cố gắng.' },
       { p: 'Tớ biết rằng bản thân tớ sẽ làm được, và cũng biết rằng cả 2 chúng ta sẽ cùng nhau làm được. Tớ biết rằng tớ và cậu sẽ lại cùng nhau vượt qua tất cả những gì sẽ tới trong tương lai. Mặc dù còn chả biết đó là gì, nhưng tớ biết, chỉ cần có cậu ở bên, dù có là chuyện gì rồi cũng có thể vượt qua hết.' },
       { p: 'Ngày này 6 năm trước, chuyện tình của mình bắt đầu. Đến ngày hôm nay, cả tớ và Bông đã cùng nhau tiếp tục bước sang những giai đoạn mới. Đây là giai đoạn mà cả hai cùng nuôi dưỡng tương lai của bản thân và của chính đôi mình. Mặc dù có những lúc bất lực vì nỗi nhớ chợt đến mà không thể làm gì. Nhưng tớ vẫn tin rằng tất cả mọi thứ đều xứng đáng. Ngày này 6 năm trước, tớ tin chắc hai đứa trẻ ấy chắc chắn đều không thể ngờ được rằng 6 năm sau chúng lại đang sống trong một tương lai hạnh phúc đến thế.' },
-      { p: 'Tớ chúc cho chúng ta có thể tiếp tục hạnh phúc, hạnh phúc đến mức tớ và Bông ở hiện tại nếu nhìn vào sẽ phản ứng như cách tớ và Bông của 2020 phản ứng với hiện tại này. Rồi lại chúc cho tớ và Bông của 60 năm sau, khi nhìn lại cả một cuộc đời mà một nửa thực sự là đối phương sẽ mỉm cười từ tận đáy lòng bởi đã luôn nỗ lực, luôn hết mình vì hiện tại' },
+      { p: 'Tớ chúc cho chúng ta có thể tiếp tục hạnh phúc, hạnh phúc đến mức tớ và Bông ở hiện tại nếu nhìn vào sẽ phản ứng như cách tớ và Bông của 2020 phản ứng với hiện tại này. Rồi lại chúc cho tớ và Bông của 60 năm sau, khi nhìn lại cả một cuộc đời mà một nửa thực sự là đối phương, sẽ mỉm cười từ tận đáy lòng bởi đã luôn nỗ lực, luôn hết mình vì hiện tại' },
       { p: 'Một lần nữa, Nam xin cảm ơn Bông, cảm ơn cậu vì đã giúp tớ trở thành phiên bản hiện tại của chính tớ. Nam xin lỗi Bông vì những lần đã làm cậu tổn thương trong quá khứ. Nam chắc chắn sẽ yêu cậu nhiều hơn, cũng xin được cậu yêu nhiều hơn, xin cho Bông luôn hạnh phúc, xin cho chúng mình sẽ được tiếp tục có nhau là người yêu, là tri kỉ, và xin cho đoạn duyên này sẽ không bao giờ đứt, xin cho tất cả những sự chân thành, tất cả những nỗ lực của cả 2 sẽ được bánh xe của số phận tác thành.' }
     ]
   });
@@ -53,6 +53,11 @@ const Memories = (() => {
   const at = (id, t) => SCENE[id].start + (SCENE[id].end - SCENE[id].start) * t;
   const lp = (id, p) => clamp01((p - SCENE[id].start) / (SCENE[id].end - SCENE[id].start));
   const inRange = (p, a, b) => p >= a && p <= b;
+  // lily beats (story.js): black, thread fade-in, fall, hold, grow, bloom
+  const LT = typeof LILY_TIMING !== 'undefined' ? LILY_TIMING : {
+    overviewFadeEnd: .12, blackStart: .12, threadFadeStart: .22, threadFadeEnd: .30,
+    fallStart: .30, fallEnd: .52, holdEnd: .58, heroGrowEnd: .78, bloomEnd: 1
+  };
 
   /* ---- state ---- */
   let built = false, direct = false, bootTime = 0;
@@ -63,11 +68,12 @@ const Memories = (() => {
   const pointCache = {};
   let morphTargets = [];
   let focusNow = 0;
-  const last = { drawn: -1, presence: -1, tint: -1, tintColor: '', under: null, immersion: '', immOp: -1, scene: '' };
+  const last = { drawn: -1, presence: -1, tint: -1, tintColor: '', under: null, immersion: '', immOp: -1, scene: '', fall: 0, nodes: null };
 
   /* Camera centre (world px) the camera module will have at master progress p. */
   function camCenterAt(p) {
     if (typeof Camera === 'undefined' || !Camera.semanticAt) return { x: 3000, y: 2100 };
+    if (Camera.centerAt) return Camera.centerAt(p);
     const s = Camera.semanticAt(p);
     const t = Camera.threadAt ? Camera.threadAt(p) : null;
     return t ? { x: mix(s.x, t.x, .76), y: mix(s.y, t.y, .76) } : { x: s.x, y: s.y };
@@ -109,10 +115,12 @@ const Memories = (() => {
   }
 
   /* ---- DOM helpers ---- */
+  // Vietnamese marks render as precomposed (NFC) glyphs; the source copy itself is never changed
+  const nfc = (text) => String(text).normalize('NFC');
   function el(tag, cls, parent, text) {
     const e = document.createElement(tag);
     if (cls) e.className = cls;
-    if (text != null) e.textContent = text;
+    if (text != null) e.textContent = nfc(text);
     if (parent) parent.appendChild(e);
     return e;
   }
@@ -299,20 +307,8 @@ const Memories = (() => {
     const raw = (p - n.s0) / span, l = clamp01(raw);
     if (p > n.s0 - .06 && !n.loaded) loadNode(n);
 
-    // the final overview: every memory returns as a small print at its place on the thread
-    const ovP = lp('overview', p);
-    const ovA = inRange(p, SCENE.overview.start, SCENE.overview.end) ? seg(ovP, .08, .32) * (1 - seg(ovP, .82, 1)) : 0;
-    if (ovA > 0) {
-      if (!n.loaded) loadNode(n);
-      if (!show(n.root, ovA * .92)) return;
-      const anchor = typeof THREAD !== 'undefined' ? THREAD.anchorPoint(n.scenes[0]) : pointFor(n.scenes[0]);
-      place(n.root, anchor, .13 * (F.z / .125), F, '', n.rot * 2);
-      n.frames.forEach((fr, j) => { fr.fr.style.opacity = j === 0 || n.stack ? '1' : '0'; });
-      for (const c of n.caps) show(c.el, 0);
-      for (const c of n.neon) show(c.el, 0);
-      n.ext.style.opacity = '0';
-      return;
-    }
+    // the overview keeps none of these nodes: only nf1 + nf2 stay (renderOverviewPair)
+    if (p >= SCENE.essay.start) { show(n.root, 0); return; }
 
     const a = ease(seg(raw, -.5, .12));
     let o = a, sx = n.offset[0] + (1 - a) * .45 * vw, sy = n.offset[1], sc = .78 + .22 * a;
@@ -357,6 +353,37 @@ const Memories = (() => {
     }
     const focus = a * (n.exit === 'left' ? 1 - seg(lp('sCurve', p), 0, .3) : 1 - seg((p - n.s1) / .012, 0, .6)) * photoVis;
     if (focus > F.focus.v) { F.focus.v = focus; F.focus.src = n.frames[n.frames.length > 1 && l > n.stack[1] ? 1 : 0].img.getAttribute('src') || ''; }
+  }
+
+  /* ---- overview: the first two photographs, side by side left of the letter ---- */
+  function buildOverviewPair() {
+    const root = worldEl(el('div', 'memory-node', els.memoryLayer));
+    root.dataset.memory = 'overview';
+    const row = el('div', '', root);
+    Object.assign(row.style, { display: 'flex', alignItems: 'center', gap: '2vw' });
+    const frames = ['nf1', 'nf2'].map((name, j) => {
+      const fr = el('div', 'photo-frame', row);
+      fr.style.transform = `rotate(${j ? 2 : -2}deg)`;
+      const img = el('img', 'photo-sharp', fr);
+      img.alt = '';
+      img.decoding = 'async';
+      img.draggable = false;
+      return { fr, img, name };
+    });
+    els.pair = { root, frames, loaded: false };
+  }
+  function sizeOverviewPair() {
+    for (const { img } of els.pair.frames) {
+      img.style.maxWidth = `${f((narrow ? .3 : .17) * vw)}px`;
+      img.style.maxHeight = `${f((narrow ? .2 : .38) * vh)}px`;
+    }
+  }
+  function renderOverviewPair(F) {
+    const p = F.p, P = els.pair;
+    if (!P.loaded && p > SCENE.essay.start - .03) { P.loaded = true; P.frames.forEach((fr) => { fr.img.src = src(fr.name); }); }
+    // no head start: the pair shares the letter's and the collage's entrance window
+    if (!show(P.root, overviewPresence(p))) return;
+    place(P.root, W(F.cam, (narrow ? -.18 : -.3) * vw, (narrow ? .3 : -.02) * vh, F), 1, F);
   }
 
   /* ---- opening: ẢNH 1 behind glass, blur, black pull ---- */
@@ -453,7 +480,7 @@ const Memories = (() => {
     ].map(([t, x, y, r, s]) => {
       const e = svg('text', { x, y, transform: `rotate(${r} ${x} ${y})`, 'text-anchor': 'middle', 'font-size': s, 'letter-spacing': 2, class: 'line-art-text' }, g);
       e.style.fill = 'var(--line-white)';
-      e.textContent = t;
+      e.textContent = nfc(t);
       return e;
     });
     const pin = worldEl(el('span', 'location-pin', els.textLayer, '📍'));
@@ -649,7 +676,7 @@ const Memories = (() => {
     ];
     const T = (x, y, size, lines, w0, w1) => {
       const e = svg('text', { x, y, 'font-size': size, 'text-anchor': 'middle', class: 'line-art-text' }, g);
-      lines.forEach((ln, i) => { const s = svg('tspan', { x, dy: i ? size * 1.35 : 0 }, e); s.textContent = ln; });
+      lines.forEach((ln, i) => { const s = svg('tspan', { x, dy: i ? size * 1.35 : 0 }, e); s.textContent = nfc(ln); });
       e._win = [w0, w1];
       return e;
     };
@@ -680,67 +707,98 @@ const Memories = (() => {
     const e = document.getElementById('essay');
     if (!e) return;
     e.textContent = '';
+    const veil = el('div', 'essay__veil', e);
     for (const part of COPY.essay) {
-      if (part.p) el('p', '', e, part.p);
-      else el('strong', '', e, part.h);
+      const sentenceWrap = (text, parent, tag = 'span') => {
+        const block = el(tag, tag === 'p' ? '' : 'essay__paragraph', parent);
+        const sentences = text.match(/[^.!?]+[.!?]+(?:\s+|$)|[^.!?]+$/g) || [text];
+        sentences.forEach((sentence) => el('span', 'essay__sentence', block, sentence));
+      };
+      if (part.p) sentenceWrap(part.p, e, 'p');
+      else sentenceWrap(part.h, e, 'p');
     }
-    el('p', 'essay__signoff', e, STORY_COPY.signoff);
-    e.style.left = '0px';
-    e.style.top = '0px';
-    e.style.transformOrigin = '0 0';
+    // the signoff is a sibling, not a child: .essay's translate would make it the containing
+    // block for the signoff's position: fixed and pin it inside the letter, not the viewport
+    const sign = el('div', 'essay__signoff');
+    sign.setAttribute('aria-hidden', 'true');
+    String(STORY_COPY.signoff).split(/\n/).filter((line) => line.trim()).forEach((line) => el('span', 'essay__signoff-line', sign, line));
+    const host = document.getElementById('cinematic-world');
+    if (host && e.parentNode !== host) host.appendChild(e);
+    (host || e.parentNode).appendChild(sign);
     els.essay = e;
+    els.essaySentences = [...e.querySelectorAll('.essay__sentence')];
+    els.essaySign = sign;
+  }
+  /* Shrink the letter 0.02rem at a time until every line fits inside its box (nothing clipped). */
+  function fitEssay() {
+    const E = els.essay;
+    if (!E) return;
+    E.style.fontSize = '';
+    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+    let size = (parseFloat(getComputedStyle(E).fontSize) || 16) / rem;
+    for (let i = 0; i < 400 && size > .5 && E.scrollHeight > E.clientHeight + 1; i++) {
+      size -= .02;
+      E.style.fontSize = `${size.toFixed(2)}rem`;
+    }
   }
   function measureEssay() {
     if (!els.essay) return;
+    fitEssay();
     els.essayW = els.essay.offsetWidth;
     els.essayH = els.essay.offsetHeight;
+  }
+  /* The Overview's one shared entrance: letter, signoff, nf1/nf2 and the 99 prints (collage99.js) all
+     ease in over [essay start, essay .25], then leave together before the lily scene's black pause. */
+  function overviewPresence(p) {
+    if (p < SCENE.essay.start || p >= at('lily', LT.overviewFadeEnd)) return 0;
+    return ease(seg(p, SCENE.essay.start, at('essay', .25))) * (1 - seg(lp('lily', p), 0, LT.overviewFadeEnd));
   }
   function renderEssay(F) {
     const E = els.essay, p = F.p;
     if (!E) return;
-    const le = lp('essay', p), lo = lp('overview', p), ll = lp('lily', p);
-    const o = p < SCENE.essay.start || p > at('lily', .4) ? 0 : seg(le, 0, .1) * (1 - seg(ll, 0, .35));
+    const o = overviewPresence(p);
     const hidden = !(o > .002);
     if (E._hid !== hidden) { E.classList.toggle('is-hidden', hidden); E._hid = hidden; }
+    // every sentence and the signature start together with the photographs; their CSS
+    // transitions carry the fade, and the signature leaves with the rest of the Overview
+    const on = !hidden && lp('lily', p) < .1;
+    if (E._on !== on) { E._on = on; els.essaySentences.forEach((s) => s.classList.toggle('is-shown', on)); }
+    if (els.essaySign._on !== on) { els.essaySign.classList.toggle('is-shown', on); els.essaySign._on = on; }
     if (hidden) return;
-    if (!els.essayH) measureEssay();
-    const H = els.essayH || vh, Wd = els.essayW || .6 * vw;
-    const r = seg(le, .1, .92);
-    let top = H > .84 * vh ? mix(-.42 * vh, .42 * vh - H, r) : -H / 2;
-    const q = ease(seg(lo, 0, .45));
-    top = mix(top, -H / 2, q);
-    const scale = mix(1 / F.z, .22 / .3, q) * (.97 + .03 * seg(le, 0, .1));
-    const P = pointFor('essay');
-    const c = Math.cos(-F.tilt * (1 - q)), s = Math.sin(-F.tilt * (1 - q));
-    const lx = -Wd / 2 * scale, ly = top * scale;
     E.style.opacity = o.toFixed(3);
-    E.style.transform = `translate3d(${f(P.x + lx * c - ly * s)}px,${f(P.y + lx * s + ly * c)}px,0) rotate(${(-F.tilt * (1 - q)).toFixed(4)}rad) scale(${scale.toFixed(4)})`;
   }
 
   /* ---- double lily, then a field of them ---- */
-  function petal(L, W2, rot, cls) {
-    return `<path class="${cls}" transform="rotate(${rot})" d="M0 0 C${-W2} ${-L * .25} ${-W2 * .85} ${-L * .75} 0 ${-L} C${W2 * .85} ${-L * .75} ${W2} ${-L * .25} 0 0 Z M0 ${-L} q${W2 * .25} ${L * .05} ${W2 * .38} ${L * .13}"/>` +
-      `<path class="${cls} lily-vein" transform="rotate(${rot})" d="M0 -8 Q${W2 * .12} ${-L * .5} 0 ${-L * .92}"/>`;
+  /* A petal sits in its own group so one flower can go from the closed bud (all petals upright and
+     narrow) to the open star (each at its own angle). Open angles are kept within ±180°. */
+  const PETAL_CLOSED = { outer: .42, inner: .34 };
+  const petalTf = (rot, k, t) => `rotate(${f(rot * t)}) scale(${f(mix(k, 1, t))} 1)`;
+  function petal(L, W2, rot, kind, open) {
+    const r = rot > 180 ? rot - 360 : rot, cls = `lily-${kind}`;
+    return `<g class="mem-petal" data-rot="${r}" data-kind="${kind}" transform="${petalTf(r, PETAL_CLOSED[kind], open ? 1 : 0)}">` +
+      `<path class="${cls}" d="M0 0 C${-W2} ${-L * .25} ${-W2 * .85} ${-L * .75} 0 ${-L} C${W2 * .85} ${-L * .75} ${W2} ${-L * .25} 0 0 Z M0 ${-L} q${W2 * .25} ${L * .05} ${W2 * .38} ${L * .13}"/>` +
+      `<path class="${cls} lily-vein" d="M0 -8 Q${W2 * .12} ${-L * .5} 0 ${-L * .92}"/></g>`;
   }
-  function flowerMarkup(draw) {
-    const c = draw ? 'draw-path' : '';
-    let out = `<path class="${c} lily-stem" d="M300 800 C285 690 318 560 300 420 C296 380 300 350 300 330"/>` +
-      `<path class="${c} lily-leaf" d="M300 640 C250 610 220 560 210 520 C250 545 285 585 300 640 M302 700 C360 670 395 630 405 590 C360 610 320 650 302 700"/>`;
+  function flowerMarkup(open) {
+    let out = '<path class="lily-stem" d="M300 800 C285 690 318 560 300 420 C296 380 300 350 300 330"/>' +
+      '<path class="lily-leaf" d="M300 640 C250 610 220 560 210 520 C250 545 285 585 300 640 M302 700 C360 670 395 630 405 590 C360 610 320 650 302 700"/>';
     out += '<g transform="translate(300 300) scale(1 .82)"><g class="mem-petals">';
-    for (let i = 0; i < 6; i++) out += petal(230, 62, i * 60, `${c} lily-outer`);
-    for (let i = 0; i < 6; i++) out += petal(175, 48, 30 + i * 60, `${c} lily-inner`);
-    out += '</g>';
+    for (let i = 0; i < 6; i++) out += petal(230, 62, i * 60, 'outer', open);
+    for (let i = 0; i < 6; i++) out += petal(175, 48, 30 + i * 60, 'inner', open);
+    out += `</g><g class="mem-stamens"${open ? '' : ' style="opacity:0"'}>`;
     for (let i = 0; i < 6; i++) {
       const a = (15 + i * 60) * Math.PI / 180, x = Math.cos(a) * 92, y = Math.sin(a) * 92;
-      out += `<path class="${c} lily-stamen" d="M0 0 Q${f(x * .4 + y * .2)} ${f(y * .4 - x * .2)} ${f(x)} ${f(y)} m-6 0 a6 4 0 1 0 12 0 a6 4 0 1 0 -12 0"/>`;
+      out += `<path class="lily-stamen" d="M0 0 Q${f(x * .4 + y * .2)} ${f(y * .4 - x * .2)} ${f(x)} ${f(y)} m-6 0 a6 4 0 1 0 12 0 a6 4 0 1 0 -12 0"/>`;
     }
-    return out + '</g>';
+    return out + '</g></g>';
   }
   function buildLily() {
     const host = document.getElementById('lily-art');
     const svgRoot = document.getElementById('thread-layer');
     const defs = svg('defs', {}, svgRoot);
-    defs.innerHTML = `<g id="mem-lily-sym">${flowerMarkup(false)}</g>` +
+    // the field's closed buds are the same flower with its petals folded, so each bud opens into its own bloom
+    defs.innerHTML = `<g id="mem-lily-sym">${flowerMarkup(true)}</g>` +
+      `<g id="mem-lily-bud" class="lily-bud">${flowerMarkup(false)}</g>` +
       '<linearGradient id="mem-haze" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--red-black);stop-opacity:0"/>' +
       '<stop offset=".55" style="stop-color:var(--red-black);stop-opacity:.75"/><stop offset="1" style="stop-color:var(--bg);stop-opacity:0"/></linearGradient>';
     defs.querySelectorAll('.mem-petals').forEach((g) => { g.style.fill = 'var(--neon)'; g.style.fillOpacity = '.1'; });
@@ -758,43 +816,46 @@ const Memories = (() => {
     }
     items.sort((a, b) => a.z - b.z);
     const order = items.map((it, i) => [Math.hypot(it.x, it.y * 1.6), i]).sort((a, b) => a[0] - b[0]);
-    order.forEach(([, i], rank) => { items[i].t = .05 + .6 * rank / items.length; });
+    order.forEach(([, i], rank) => { items[i].t = .02 + .96 * rank / items.length; items[i].bloom = .1 + rnd() * .35; });
     const haze = svg('rect', { fill: 'url(#mem-haze)' }, null);
     let hazeAdded = false;
     for (const it of items) {
       if (!hazeAdded && it.z > .5) { field.appendChild(haze); hazeAdded = true; }
+      it.bud = svg('use', { href: '#mem-lily-bud' }, field);
       it.el = svg('use', { href: '#mem-lily-sym' }, field);
       it.el.style.opacity = '0';
+      it.bud.style.opacity = '0';
     }
     if (!hazeAdded) field.appendChild(haze);
-    const main = svg('g', {}, field);
-    main.innerHTML = flowerMarkup(true);
-    const draws = [...main.querySelectorAll('.draw-path')].map((e) => {
-      const k = e.classList;
-      let i = 0;
-      if (k.contains('lily-outer')) i = [...main.querySelectorAll('.lily-outer:not(.lily-vein)')].indexOf(e);
-      if (k.contains('lily-inner')) i = [...main.querySelectorAll('.lily-inner:not(.lily-vein)')].indexOf(e);
-      e._win = k.contains('lily-stem') ? [0, .3] : k.contains('lily-leaf') ? [.2, .36]
-        : k.contains('lily-vein') ? [.62, .86]
-        : k.contains('lily-outer') ? [.24 + i * .04, .46 + i * .04]
-        : k.contains('lily-inner') ? [.44 + i * .035, .64 + i * .035] : [.66, .86];
-      return e;
+    // the one hero lily: grows closed from the ground, then opens petal by petal
+    const hero = svg('g', {}, field);
+    hero.innerHTML = flowerMarkup(false);
+    hero.style.display = 'none';
+    hero._shown = false;
+    const heroPetals = hero.querySelector('.mem-petals');
+    heroPetals.style.fill = 'var(--neon)';
+    let io = 0, ii = 0;
+    const petals = [...hero.querySelectorAll('.mem-petal')].map((g) => {
+      const kind = g.dataset.kind, outer = kind === 'outer';
+      // outer petals part first, inner ones follow, each a little after its neighbour
+      const d = outer ? .04 * io++ : .2 + .035 * ii++;
+      return { g, rot: Number(g.dataset.rot), k: PETAL_CLOSED[kind], win: [d, d + .62], tf: '' };
     });
-    els.lily = { field, main, draws, items, haze, petals: main.querySelector('.mem-petals') };
+    els.lily = { field, hero, heroPetals, petals, stamens: hero.querySelector('.mem-stamens'), items, haze };
   }
   function sizeLily() {
     const L = els.lily;
     const s = .62 * vh / 800;
     L.sMain = s;
-    L.main.style.strokeWidth = `${f(2.2 / s)}px`;
-    for (const it of L.items) it.el.style.strokeWidth = `${f(2.2 / (s * it.s))}px`;
+    L.hero.style.strokeWidth = `${f(2.2 / s)}px`;
+    for (const it of L.items) it.el.style.strokeWidth = it.bud.style.strokeWidth = `${f(2.2 / (s * it.s))}px`;
     L.haze.setAttribute('x', f(-1.3 * vw)); L.haze.setAttribute('y', f(-.22 * vh));
     L.haze.setAttribute('width', f(2.6 * vw)); L.haze.setAttribute('height', f(.5 * vh));
   }
   function renderLily(F) {
     const p = F.p, L = els.lily;
     if (!inRange(p, SCENE.lily.start - .002, at('qr', .5))) { show(L.field, 0); return; }
-    const l = lp('lily', p), lf = lp('lilyField', p);
+    const l = lp('lily', p), lf = clamp01((p - SCENE.lilyField.start) / Math.max(.001, SCENE.fireworks.end - SCENE.lilyField.start));
     const fade = (1 - .55 * lp('fireworks', p)) * (1 - .5 * lp('quiet', p)) * (1 - seg(lp('qr', p), 0, .45));
     if (!show(L.field, fade)) return;
     const zoom = 1 - .24 * ease(lf);
@@ -802,19 +863,33 @@ const Memories = (() => {
     const base = W(P, 0, .36 * vh * zoom, F);
     L.field.setAttribute('transform', `translate(${f(base.x)} ${f(base.y)}) rotate(${f(-F.tilt * 57.2958)}) scale(${(zoom / F.z).toFixed(4)})`);
     const s = L.sMain;
-    L.main.setAttribute('transform', `scale(${s.toFixed(4)}) translate(-300 -800)`);
-    for (const e of L.draws) setDraw(e, ease(seg(l, e._win[0], e._win[1])));
-    L.petals.style.fill = 'var(--neon)';
-    L.petals.style.fillOpacity = (.14 * seg(l, .8, 1)).toFixed(3);
+    // hero: nothing until the thread has landed and held, then it rises closed from the ground
+    // (stem scaleY 0 → 1 about the ground line), then blooms slowly through the end of the scene
+    const after = p >= SCENE.lily.end;
+    const grow = after ? 1 : ease(seg(l, LT.holdEnd, LT.heroGrowEnd));
+    const opened = after ? 1 : seg(l, LT.heroGrowEnd, LT.bloomEnd);
+    if (show(L.hero, after ? 1 : seg(l, LT.holdEnd, LT.holdEnd + .04))) {
+      L.hero.setAttribute('transform', `scale(${s.toFixed(4)} ${(s * Math.max(.001, grow)).toFixed(4)}) translate(-300 -800)`);
+      for (const pt of L.petals) {
+        const tf = petalTf(pt.rot, pt.k, ease(seg(opened, pt.win[0], pt.win[1])));
+        if (pt.tf !== tf) { pt.g.setAttribute('transform', tf); pt.tf = tf; }
+      }
+      L.heroPetals.style.fillOpacity = mix(.1, .16, ease(opened)).toFixed(3);
+      L.stamens.style.opacity = ease(seg(opened, .55, 1)).toFixed(3);
+    }
     const par = (F.cam.x - P.x) * F.z;
     for (const it of L.items) {
-      const b = ease(seg(lf, it.t, it.t + .25));
-      const o = b * mix(.28, .9, it.z);
-      const so = o.toFixed(3);
-      if (it._o !== so) { it.el.style.opacity = so; it._o = so; }
+      const spawn = ease(seg(lf, it.t, it.t + .035));
+      // late spawns get a shorter wait, so every bud has opened by the end of the fireworks
+      const b0 = it.t + it.bloom * (1 - it.t);
+      const bloom = ease(seg(lf, b0, Math.min(1, b0 + .08)));
+      const o = spawn * mix(.28, .9, it.z);
+      const so = o.toFixed(3) + '/' + bloom.toFixed(3);
+      if (it._o !== so) { it.bud.style.opacity = (o * (1 - bloom)).toFixed(3); it.el.style.opacity = (o * bloom).toFixed(3); it._o = so; }
       if (o <= .002) continue;
       const x = it.x * vw + par * (it.z - .4) * .35, y = it.y * vh;
-      it.el.setAttribute('transform', `translate(${f(x)} ${f(y)}) rotate(${f(it.rot)}) scale(${(s * it.s * (.3 + .7 * b)).toFixed(4)}) translate(-300 -800)`);
+      const tf = `translate(${f(x)} ${f(y)}) rotate(${f(it.rot)}) scale(${(s * it.s * (.3 + .7 * bloom)).toFixed(4)}) translate(-300 -800)`;
+      it.el.setAttribute('transform', tf); it.bud.setAttribute('transform', tf);
     }
     L.haze.style.opacity = (.7 * seg(lf, .1, .6)).toFixed(3);
   }
@@ -853,18 +928,46 @@ const Memories = (() => {
     const p = F.p;
     const emerge = seg(p, at('openingMessage', .55), at('openingMessage', .9));
     const end = emerge > 0 ? THREAD.fractionAtProgress(Math.min(1, p + .01)) : 0;
-    if (Math.abs(end - last.drawn) > 1e-5) { THREAD.setDrawn(end, 0); last.drawn = end; }
-    const presence = emerge * (1 - .5 * F.focus.v);
+    const l = lp('lily', p), inLily = p >= SCENE.lily.start;
+    // gone for the whole Overview (quick fade at its start) and the black pause after it,
+    // then it fades back in near the top of the screen
+    const threadScene = !inLily ? 1 - seg(lp('essay', p), 0, .06) : ease(seg(l, LT.threadFadeStart, LT.threadFadeEnd));
+    const presence = emerge * (1 - .5 * F.focus.v) * threadScene;
+    if (Math.abs(end - last.drawn) > 1e-5) { THREAD.setDrawn(end); last.drawn = end; }
     if (Math.abs(presence - last.presence) > .002) { THREAD.setPresence(presence); last.presence = presence; }
+
+    // the old checkpoint dots belong to the story before the Overview: off from the lily scene on,
+    // back only when scrolled up before the letter; the head dot goes with them
+    const nodesOn = inLily ? false : p < SCENE.essay.start ? true : last.nodes !== false;
+    if (last.nodes !== nodesOn && THREAD.setNodesEnabled) { THREAD.setNodesEnabled(nodesOn); last.nodes = nodesOn; last.scene = ''; }
+    // while they still exist they fade with the strand, so none float alone over the Overview letter
+    const dots = document.getElementById('thread-nodes');
+    const dotOp = nodesOn ? threadScene.toFixed(3) : '0';
+    if (dots && dots._op !== dotOp) { dots.style.opacity = dotOp; dots._op = dotOp; }
+    const head = document.getElementById('thread-head');
+    if (head && head._hid !== inLily) { head.style.display = inLily ? 'none' : ''; head._hid = inLily; }
+
+    // the strand falls from near the top of the screen to the lily's ground line, and stays there
+    let fall = 0;
+    if (inLily && THREAD.setFall) {
+      const tip = THREAD.toScreen(THREAD.pointAt(end).x, THREAD.pointAt(end).y);
+      const g = W(pointFor('lily'), 0, .36 * vh * (1 - .24 * ease(clamp01((p - SCENE.lilyField.start) / Math.max(.001, SCENE.fireworks.end - SCENE.lilyField.start)))), F);
+      const ground = THREAD.toScreen(g.x, g.y).y - tip.y;
+      fall = mix(-.35 * vh, ground, ease(seg(l, LT.fallStart, LT.fallEnd)));
+    }
+    if (THREAD.setFall && Math.abs(fall - last.fall) > .5) { THREAD.setFall(fall); last.fall = fall; }
+
     let id = '';
     for (const s of STORY) if (p >= s.start) id = s.id;
-    if (id !== last.scene) { THREAD.setActiveNode(id); last.scene = id; }
+    if (id !== last.scene) { if (nodesOn) THREAD.setActiveNode(id); last.scene = id; }
   }
 
   function renderImmersion(F) {
     const bg = els.immersion;
     if (!bg) return;
-    const o = .55 * F.focus.v;
+    // from the lily scene on there is no backdrop at all: it is gone before the black pause
+    const lilyOut = F.p < SCENE.lily.start ? 1 : 1 - seg(lp('lily', F.p), 0, LT.overviewFadeEnd);
+    const o = .55 * F.focus.v * (F.p >= at('lily', LT.overviewFadeEnd) ? 0 : lilyOut);
     const url = o > .01 && F.focus.src ? F.focus.src : last.immersion;
     if (url !== last.immersion) { bg.style.backgroundImage = url ? `url("${url}")` : ''; last.immersion = url; }
     if (Math.abs(o - last.immOp) > .003) { bg.style.opacity = o.toFixed(3); last.immOp = o; }
@@ -893,6 +996,7 @@ const Memories = (() => {
     buildLily();
     buildQr();
     buildEssay();
+    buildOverviewPair();
     NODE_SPECS.forEach((s, i) => nodes.push(buildNode(s, i)));
     buildDate();
 
@@ -926,6 +1030,7 @@ const Memories = (() => {
     sizeOpening();
     sizeTata();
     sizeLily();
+    sizeOverviewPair();
     for (const n of nodes) layoutNode(n);
     measureEssay();
     if (els.date) els.date.meas = null;
@@ -949,6 +1054,7 @@ const Memories = (() => {
     renderTata(F);
     renderPhone(F);
     for (const n of nodes) renderNode(n, F);
+    renderOverviewPair(F);
     renderDate(F);
     for (const t of texts) renderText(t, F);
     renderEssay(F);
@@ -957,6 +1063,19 @@ const Memories = (() => {
     focusNow = F.focus.v;
     renderThread(F);
     renderImmersion(F);
+    clearForLily(F);
+  }
+
+  /* The black pause must be truly black: wipe any leftover particle pixels while the lily scene
+     plays (nothing is drawn there before the fireworks) and make sure the Tata tint is down. */
+  function clearForLily(F) {
+    if (!inRange(F.p, SCENE.lily.start, SCENE.lilyField.start)) return;
+    const cv = els.particles || (els.particles = document.getElementById('particle-canvas'));
+    if (cv && cv.getContext) {
+      const ctx = cv.getContext('2d');
+      ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height); ctx.restore();
+    }
+    if (els.tint && els.tint._op !== '0.000') { els.tint.style.opacity = '0.000'; els.tint._op = '0.000'; }
   }
 
   const api = {

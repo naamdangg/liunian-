@@ -40,7 +40,7 @@ const Camera = (() => {
     const y = mix(aPos[1], bPos[1], eased) * WORLD.height;
     // Tight focus along photographs and messages; the overview opens to reveal the route.
     // Zoom eases late in each scene so the essay → overview → lily → qr changes never jump.
-    const zoomOf = (id) => id === 'overview' ? .125 : id === 'qr' ? .25 : .30;
+    const zoomOf = (id) => id === 'essay' ? .095 : id === 'overview' ? .085 : id === 'qr' ? .25 : .30;
     const zt = t <= .55 ? 0 : (t - .55) / .45;
     const zoom = mix(zoomOf(a.id), zoomOf(b.id), zt * zt * (3 - 2 * zt));
     return { x, y, zoom, depth: Math.sin(Math.PI * t) * .35, blur: 0 };
@@ -66,26 +66,30 @@ const Camera = (() => {
     if (cameraEl) cameraEl.dataset.progress = state.progress.toFixed(5);
     if (typeof THREAD !== 'undefined' && THREAD.setWidthScale) THREAD.setWidthScale(1 / Math.max(.01, scale));
   }
+  /* Follow the thread along x; vertically stay near the wave's centre line instead of riding
+     every crest, so the shot glides while the thread itself waves through the frame. */
+  function centerAt(progress, semantic = semanticAt(progress), thread = threadAt(progress)) {
+    if (!thread) return { x: semantic.x, y: semantic.y };
+    return { x: mix(semantic.x, thread.x, .76), y: mix(semantic.y, WORLD.height / 2, .5) };
+  }
   function update(progress) {
     const p = clamp01(progress);
     const semantic = semanticAt(p);
     const thread = threadAt(p);
-    // Follow the thread's sampled centerline, with semantic anchors keeping the shot composed.
-    const follow = thread ? .76 : 0;
-    let x = mix(semantic.x, thread ? thread.x : semantic.x, follow);
-    let y = mix(semantic.y, thread ? thread.y : semantic.y, follow);
+    let { x, y } = centerAt(p, semantic, thread);
     if (reduced) {
       // Keep the full story and orientation, while reducing spatial travel and scale swings.
       x = mix(WORLD.width / 2, x, .70); y = mix(WORLD.height / 2, y, .70);
     }
     const zoom = reduced ? mix(.235, semantic.zoom, .35) : semantic.zoom;
     // sin() keeps the tilt continuous when the thread turns back left (atan2 wraps at ±π).
-    const tilt = thread ? Math.sin(thread.angle) * .12 : 0;
+    // Kept small: the sine thread turns every half period, a large tilt would rock the shot.
+    const tilt = thread ? Math.sin(thread.angle) * .03 : 0;
     state = { progress: p, x, y, angle: thread ? thread.angle : 0, zoom, tilt: reduced ? tilt * .4 : tilt,
       depth: reduced ? semantic.depth * .25 : semantic.depth, blur: semantic.blur || 0 };
     render();
     return Object.freeze({ ...state, threadFraction: thread ? thread.fraction : p });
   }
-  const api = { init, resize, update, semanticAt, threadAt, get state() { return { ...state }; }, get reducedMotion() { return reduced; }, world: WORLD };
+  const api = { init, resize, update, semanticAt, threadAt, centerAt, get state() { return { ...state }; }, get reducedMotion() { return reduced; }, world: WORLD };
   return api;
 })();

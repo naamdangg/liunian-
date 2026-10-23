@@ -31,7 +31,17 @@ const CONFIG = Object.freeze({
     '--neon-glow': `0 0 5px ${THEME.neonPink}, 0 0 15px ${THEME.neonPink}, 0 0 35px ${THEME.neonPink}73`,
     '--font': 'Inter, "SF Pro Display", "Helvetica Neue", "Segoe UI", Arial, sans-serif',
     '--text-max': 'min(88vw, 34ch)',
-    '--essay-max': 'min(90vw, 68ch)'
+    '--letter-left': '46vw',
+    '--letter-max': 'min(48vw, 60ch)',
+    '--letter-size': 'clamp(.72rem, .58rem + .34vw, .95rem)',
+    '--letter-line': '1.55',
+    '--signoff-top-gap': '9rem',
+    '--letter-veil': 'rgba(5,5,5,.5)',
+    '--signature-size': 'clamp(1.5rem, 1rem + 1.6vw, 2.7rem)',
+    '--font-letter': '"Noto Serif", "Times New Roman", "Segoe UI", serif',
+    '--font-signature': '"Dancing Script", "Noto Serif", "Times New Roman", cursive',
+    /* The Overview letter width; narrow screens override it on .essay. */
+    '--essay-max': 'var(--letter-max)'
   })
 });
 
